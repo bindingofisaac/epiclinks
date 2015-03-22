@@ -13,7 +13,17 @@ def main():
     msg = ""
     attr = {}
     attr["link"] = get_link() 
-    status = api.put_wall_post(msg, attr)
+    
+    new_post = False
+
+    with open("posted_links", "r") as f:
+        links = f.read().splitlines()
+        if attr["link"] not in links:
+            status = api.put_wall_post(msg, attr)
+            new_post = True
+
+    if new_post:
+        with open("posted_links", "a") as f: f.write(attr["link"]+"\n")
 
 if __name__ == "__main__":
     main()

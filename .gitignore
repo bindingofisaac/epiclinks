@@ -1,2 +1,4 @@
 config.fish
 epiclinks-env/
+posted_links
+*.pyc
