@@ -10,5 +10,3 @@ def get_api(cfg):
 
     graph = facebook.GraphAPI(page_access_token)
     return graph
-
-
