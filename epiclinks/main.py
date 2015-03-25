@@ -9,6 +9,7 @@ from apscheduler.schedulers.background import BlockingScheduler
 from redis import Redis
 from rq import Queue
 
+import timer
 
 def main(links):
     global page_q
@@ -19,7 +20,6 @@ def main(links):
     api = get_api(cfg)
     attr = {}
     for link in links:
-        print link
         attr["link"] = link
         new_post = False
 
@@ -31,6 +31,8 @@ def main(links):
 
         if new_post:
             with open("posted_links", "a") as f: f.write(attr["link"]+"\n")
+        
+        timer.timer()
 
 def f(x):
     return x()
